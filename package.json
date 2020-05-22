@@ -1,0 +1,31 @@
+{
+	"name": "nodejs-mvc-by-vue",
+	"version": "1.0.0",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:SeonGyuHwang/nodejs-mvc-by-vue.git"
+	},
+	"engines": {
+		"node": "~12",
+		"npm": "~6"
+	},
+	"scripts": {
+		"start": "node ./web.js"
+	},
+	"dependencies": {
+		"body-parser": "latest",
+		"cookie-parser": "latest",
+		"crypto": "latest",
+		"debug": "latest",
+		"ejs": "~3",
+		"json5": "latest",
+		"express": "~4",
+		"express-session": "~1",
+		"express-socket.io-session": "~1",
+		"ip": "latest",
+		"moment": "latest",
+		"mysql": "latest",
+		"socket.io": "~2"
+	}
+}

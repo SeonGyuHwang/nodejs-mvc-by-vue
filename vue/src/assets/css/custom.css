@@ -1,0 +1,145 @@
+#ui-datepicker-div{
+  z-index: 10 !important;
+}
+
+body.is_login .content-wrapper {
+	background-color: #343a40 !important;
+}
+
+body.is_pop nav,body.is_pop footer{
+	display:none !important;
+}
+
+body.is_pop {
+	padding-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+body.is_pop .content-wrapper {
+	margin-left: 0 !important;
+	overflow-x: auto !important;
+	min-height: auto !important;
+}
+
+.hide {
+	display:none !important;
+}
+
+.isMergeTd {
+	vertical-align: middle !important;
+}
+
+a.btn-black {
+	background-color: #000;
+	border-color: #000;
+	color: #fff;
+}
+
+.ui-datepicker {
+	font-size: 75%;
+}
+
+.ui-datepicker-trigger{
+	display: none !important;
+}
+
+.ui-datepicker select.ui-datepicker-year {
+	width: 50px !important;
+	min-width: 50px !important;
+	max-width: 50px !important;
+	height: 23px !important;
+}
+
+.ui-datepicker select.ui-datepicker-month{
+	width: 50px !important;
+	min-width: 50px !important;
+	max-width: 50px !important;
+	height: 23px !important;
+}
+
+.tableFixed{
+	table-layout: fixed;
+	word-wrap:break-word;
+}
+
+.publicDataTable td:hover{
+	cursor:pointer;
+}
+
+.publicDataTable th, .publicDataTable td{
+	border:2px solid #000 !important;
+	padding: 5px !important;
+	font-weight: 900 !important;
+}
+
+.listWrap {
+	min-width:1350px;
+}
+
+table .tbody_heads {
+	display: none;
+}
+
+@media screen and (max-width: 1650px) {
+	.content-wrapper {
+		overflow-x: auto;
+	}
+}
+
+/*@media screen and (max-width: 1200px){
+
+  .container {
+    width: 1200px;
+    max-width: none !important;
+  }
+
+  body {
+    min-width: 1200px;
+  }
+
+}*/
+
+@media print {
+  @page {
+    size: landscape;
+  }
+
+	body {
+		padding-top: 0 !important;
+		margin-bottom: 0 !important;
+	}
+
+	table thead,tfoot{
+		display: none !important;
+	}
+
+	.tbody_heads {
+		display: table-row !important;
+	}
+
+	table td.bg-secondary,table td.text-white{
+		color:#000 !important;
+		background-color: #fff !important;
+	}
+
+	.btn, .pagination, .schWrap, .dataTables_info, .dataTables_length {
+		display:none !important;
+	}
+
+	.breadcrumb {
+		padding: 0;
+		margin: 0;
+		text-align: center !important;
+		width: 100% !important;
+	}
+
+	.container-fluid,.card-body {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	.content-wrapper{
+		padding-top: 0 !important;
+		margin-left: 0 !important;
+	}
+}
