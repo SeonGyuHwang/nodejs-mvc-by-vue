@@ -72,7 +72,7 @@
     "webpack": "~3",
     "webpack-cli": "~3",
     "webpack-bundle-analyzer": "~3",
-    "webpack-dev-server": "~2",
+    "webpack-dev-server": "~3",
     "webpack-merge": "~4"
   },
   "engines": {
