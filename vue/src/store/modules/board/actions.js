@@ -1,6 +1,5 @@
 import * as t from './types'
 import {
-  mainChartDataAPI,
   getRowAPI,
   setRowAPI,
   delRowAPI,
@@ -81,11 +80,11 @@ export default {
     return commit(t.CLEAR_ROW)
   },
   getList ({ commit }, payload) {
-    commit(t.SET_DATA, [])
-    commit(t.SET_DATA_COUNT, 0)
-
     return Promise.resolve()
       .then(() => {
+        commit(t.SET_DATA, [])
+        commit(t.SET_DATA_COUNT, 0)
+
         this.dispatch('common/setContentLoading', true)
 
         return getListAPI(payload)

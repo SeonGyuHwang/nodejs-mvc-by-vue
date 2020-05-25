@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-if="loginCheck">
     <app-header />
     <app-body />
     <app-footer />
@@ -12,8 +12,8 @@
   export default {
     name: 'App',
     computed: {
-      ...mapState('common', {
-        loginCheck: state => state.login_check
+      ...mapState({
+        loginCheck: state => state.common.login_check
       })
     },
     methods: {
