@@ -37,7 +37,6 @@
     "font-awesome": "latest",
     "crypto": "latest",
     "autoprefixer": "latest",
-    "@babel/polyfill": "~7",
     "babel-core": "~6",
     "babel-helper-vue-jsx-merge-props": "~2",
     "babel-loader": "~7",
