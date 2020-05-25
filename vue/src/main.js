@@ -7,11 +7,21 @@ import App from './App'
 import { sync } from 'vuex-router-sync'
 import router from '@/router'
 import store from "@/store"
+import mixins from '@/shared/mixin'
 
 import Header from '@/components/common/Header'
 import Footer from '@/components/common/Footer'
 import Body from '@/components/common/Body'
 import Paging from '@/components/common/Paging'
+
+/**
+ * Global 컴포넌트
+ */
+Vue.component('app-header', Header)
+Vue.component('app-footer', Footer)
+Vue.component('app-body', Body)
+Vue.component('app-paging', Paging)
+Vue.component('vcl-table', VclTable)
 
 /**
  * 플러그인
@@ -24,6 +34,7 @@ import { VclTable } from 'vue-content-loading'
 import axios from 'axios'
 import json5 from "json5";
 import moment from "moment"
+import phps from "@/shared/common/phps"
 
 import "bootstrap"
 import "@/assets/vendor/plugins/jquery-ui.min"
@@ -34,10 +45,6 @@ import "@/assets/vendor/sb-admin/sb-admin.min"
 import "@/assets/js/func"
 import "@/assets/js/socket"
 
-import "@/assets/js/common_init"
-
-import phps from "@/shared/common/phps"
-
 window.moment = moment;
 window.axios = axios;
 window.JSON5 = json5;
@@ -45,15 +52,10 @@ window.JSON5 = json5;
 Vue.$phps = Vue.prototype.$phps = phps
 Vue.$cookie = Vue.prototype.$cookie = VueCookies
 
-Vue.config.productionTip = true
-
-Vue.component('app-header', Header)
-Vue.component('app-footer', Footer)
-Vue.component('app-body', Body)
-Vue.component('app-paging', Paging)
-Vue.component('vcl-table', VclTable)
+Vue.config.productionTip = false
 
 sync(store, router)
+Vue.use(mixins);
 Vue.use(VueHead);
 Vue.use(LoadScript);
 Vue.use(Loading);
@@ -78,29 +80,6 @@ new Vue({
       { name: 'google-signin-client_id', content: store.getters['common/getGoogleClientId'] },
       { name: 'google-site-verification', content: "peiGkzoETi_aCpbUf4ewgIJXnIF_82OprkzO2ffddPA" },
     ]
-  },
-  computed: {
-    ...mapState('common', {
-      host: state => state.host,
-      loginCheck: state => state.login_check,
-      contentLoading: state => state.contentLoading,
-
-      googleApiKey: state => state.GOOGLE_API_KEY,
-      googleClientId: state => state.GOOGLE_CLIENT_ID,
-      googleClientSecretId: state => state.GOOGLE_CLIENT_SECRET_ID,
-
-      naverClientId: state => state.NAVER_CLIENT_ID,
-      naverClientSecretId: state => state.NAVER_CLIENT_SECRET_ID,
-    })
-  },
-  methods: {
-    ...mapActions('common', {
-      userLoginAction: 'userLogin',
-      userLogoutAction: 'userLogout'
-    }),
-    loginFail(path) {
-      this.$router.push(path || '/auth/login')
-    }
   },
   template: '<App/>'
 })

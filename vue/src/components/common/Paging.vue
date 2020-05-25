@@ -1,6 +1,6 @@
 <template>
   <div id="App-Paging">
-    <div class="dataTables_paginate paging_simple_numbers text-right">
+    <div class="dataTables_paginate paging_simple_numbers text-right" v-show="length > 0">
       <ul class="pagination">
         <li class="paginate_button page-item previous" :class="prevBlock === null ? 'disabled' : ''">
           <a href="javascript:void(0);" class="page-link" @click="movePage(prevBlock)">이전</a>
@@ -21,17 +21,11 @@
 
   export default {
     name: 'app-paging',
-    props: [
-      "page",
-      "dataStart",
-      "perLength",
-      "perBlock",
-    ],
     data() {
       return {
-        "prevBlock": 0
-        ,"nextBlock": 0
-        ,"paging": {}
+        prevBlock: 0
+        ,nextBlock: 0
+        ,paging: {}
       }
     },
     watch: {
@@ -41,7 +35,7 @@
           this.getPaging()
         }
       },
-      '$parent.perLength': {
+      length: {
         deep: true,
         handler() {
           this.getPaging()
@@ -49,21 +43,26 @@
       }
     },
     computed: {
-      ...mapState('board', {
+      ...mapState('delivery', {
         totalCount: state => state.count
       }),
       paged() {
         return this.$parent.page
+      },
+      length() {
+        return this.$parent.perLength
+      },
+      block() {
+        return this.$parent.perBlock
       }
     },
     methods: {
       movePage(page = 1) {
         this.$parent.page = page
-        this.$parent.dataStart = this.$parent.perLength*(page-1)
+        this.$parent.dataStart = this.length*(page-1)
       },
       getPaging() {
-        this.paging = this.$phps.setPaging(this.$parent.page, this.totalCount, this.$parent.perLength, this.$parent.perBlock)
-        //this.paging = this.$phps.setPaging(this.$parent.page, 155, 5, this.$parent.perBlock)
+        this.paging = this.$phps.setPaging(this.paged, this.totalCount, this.length, this.block)
 
         this.prevBlock = this.paging.firstPage-1 <= 0 ? null : this.paging.firstPage-1
         this.nextBlock = this.paging.lastPage+1 >= this.paging.totalPage ? null : this.paging.lastPage+1

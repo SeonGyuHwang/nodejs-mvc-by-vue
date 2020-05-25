@@ -23,7 +23,7 @@
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-            <a class="btn btn-primary" href="javascript:void(0);" @click="this.$root.userLogoutAction">로그아웃</a>
+            <a class="btn btn-primary" href="javascript:void(0);" @click="userLogoutAction">로그아웃</a>
           </div>
         </div>
       </div>

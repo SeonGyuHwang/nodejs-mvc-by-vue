@@ -38,55 +38,15 @@
 </template>
 
 <script>
-  import {mapActions, mapState} from "vuex";
+  import {mapState} from "vuex";
 
   export default {
     name: 'board-write',
     computed: {
-      ...mapState('common', {
-        user_info: state => state.user_info
-      }),
       ...mapState('board', {
         idx: state => state.idx,
         row: state => state.row
       })
-    },
-    methods: {
-      ...mapActions('board', {
-        getRowAction: 'getRow',
-        setRowAction: 'setRow',
-        delRowAction: 'delRow'
-      }),
-      close(){
-        this.$emit('close')
-      },
-      proc() {
-
-        const formData = new FormData(this.$refs['publicFrm']); // reference to form element
-        const data = {}; // need to convert it before using not with XMLHttpRequest
-        for (let [key, val] of formData.entries())
-          Object.assign(data, { [key]: val })
-
-        this.setRowAction(data).then(() => {
-          this.$parent.setData()
-          this.close()
-        })
-
-      },
-      delRow() {
-
-        if( confirm('삭제 하시겠습니까?') ) {
-
-          this.delRowAction({
-            params: { idx: this.idx }
-          }).then(() => {
-            this.$parent.setData()
-            this.close()
-          })
-
-        }
-
-      }
     },
     beforeCreate() {
       document.body.classList.add('is_pop', 'is_login', 'is_popup_resize')

@@ -102,7 +102,7 @@
 
 <script>
   import Write from './Write'
-  import {mapActions, mapState} from "vuex";
+  import {mapState} from "vuex";
 
   export default {
     name: 'board-list',
@@ -115,37 +115,14 @@
         }
       }
     },
-    data() {
-      return {
-        page: 1,
-        dataStart: 0,
-        perLength: 50,
-        perBlock: 5
-      }
-    },
     components: {
       "write": Write
     },
-    watch: {
-      dataStart: {
+    watch:{
+      tableData: {
         deep: true,
-        handler(nVal) {
-          this.setData()
-        }
-      },
-      perLength: {
         handler() {
-          this.setData()
-        }
-      },
-      startDate: {
-        handler() {
-          this.setData()
-        }
-      },
-      endDate: {
-        handler() {
-          this.setData()
+          this.tableGroups()
         }
       }
     },
@@ -155,69 +132,10 @@
         userEmail: state => state.userEmail,
         startDate: state => state.startDate,
         endDate: state => state.endDate,
-        showModal: state => state.showModal,
         tableData: state => state.list,
         totalCount: state => state.count,
         totals: state => state.totals,
-      }),
-      ...mapState('common', {
-        contentLoading: state => state.contentLoading,
-      }),
-      totalCountNumberFormat() {
-        return number_format(this.totalCount)
-      },
-    },
-    methods: {
-      ...mapActions('board', {
-        getListAction: 'getList'
-      }),
-      writeClose() {
-        this.$store.dispatch('board/setIdx', null)
-        this.$store.dispatch('board/setShowModal', false)
-      },
-      writePopup(idx) {
-        this.$store.dispatch('board/setIdx', idx)
-        this.$store.dispatch('board/setShowModal', true)
-      },
-      setUserEmail (e){
-
-        this.$store.dispatch('board/setUserEmail', e.target.value)
-
-      },
-      setDatePicker (){
-
-        jQuery(".sch_start_date").datepicker({
-          onSelect: () => {
-            this.page = 1
-            this.dataStart = 0
-
-            this.$store.dispatch('board/setStartDate', this.$el.querySelector('.sch_start_date').value)
-          }
-        })
-
-        jQuery(".sch_end_date").datepicker({
-          onSelect: () => {
-            this.page = 1
-            this.dataStart = 0
-
-            this.$store.dispatch('board/setEndDate', this.$el.querySelector('.sch_end_date').value)
-          }
-        })
-
-      },
-      setData(){
-
-        this.getListAction({
-          params: {
-            sch_user_email: this.userEmail,
-            sch_start_date: this.startDate,
-            sch_end_date: this.endDate,
-            start: this.dataStart,
-            length: this.perLength
-          }
-        })
-
-      }
+      })
     },
     created() {
       this.setData()

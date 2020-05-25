@@ -27,30 +27,6 @@
       document.body.classList.add("is_pop", "is_login")
     },
     methods: {
-      authApis() {
-        const self = this
-
-        gapi.load('auth2', () => {
-
-          gapi.auth2.init({
-            apiKey: self.$root.googleApiKey
-            ,client_id: self.$root.googleClientId
-          });
-
-        });
-
-        new naver.LoginWithNaverId({
-          clientId: self.$root.naverClientId
-          ,callbackUrl: self.$root.host +"/auth/callback/naver"
-          ,isPopup: false
-          ,loginButton: {
-            color: "green"
-            , type: 3
-            , height: 38
-          }
-        }).init();
-
-      },
       gAuthInit() {
         gapi.auth2.getAuthInstance().signIn({
           scope: 'profile email'

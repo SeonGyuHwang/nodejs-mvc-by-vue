@@ -145,29 +145,6 @@ window.publicLayer = {
 	}
 };
 
-window.queryString = {
-	'setArr' : [],
-	'init': function(){
-		var URI = location.href.split("?");
-		if(URI.length > 1){
-			URI = URI[1].split("&");
-			for(var i in URI)
-				if(URI[i])
-					this.setArr[this.setArr.length] = { key: URI[i].split("=")[0], value: URI[i].split("=")[1] };
-		}
-	},
-	'getParam': getKey => {
-		var getValue = '';
-		if(this.setArr.length > 0){
-			for(var i in this.setArr)
-				if(this.setArr[i].key == getKey)
-					getValue = this.setArr[i].value;
-		}
-
-		return getValue;
-	}
-};
-
 window.delay = (() => {
 	var timer = 0;
 	return function(callback, ms){
