@@ -80,7 +80,7 @@ new Vue({
     meta: [
       { name: 'google-signin-scope', content: "profile email" },
       { name: 'google-signin-client_id', content: store.getters['common/getGoogleClientId'] },
-      { name: 'google-site-verification', content: "peiGkzoETi_aCpbUf4ewgIJXnIF_82OprkzO2ffddPA" },
+      { name: 'google-site-verification', content: "" },
     ]
   },
   template: '<App/>'
