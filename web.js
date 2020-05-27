@@ -54,15 +54,6 @@ global.ENC_IV = crypto.createHash('sha256').update(ENCRYPT_IV, 'utf8').digest('h
 global.Func = require(RESOURCE+'/common/func');
 // App Function End
 
-// App API Start
-global.NAVER_CLIENT_ID = '';
-global.NAVER_CLIENT_SECRET_ID = '';
-
-global.GOOGLE_API_KEY = '';
-global.GOOGLE_CLIENT_ID = '';
-global.GOOGLE_CLIENT_SECRET_ID = '';
-// App API End
-
 // App DB Start
 global.mysql = require('mysql');
 global.pool = mysql.createPool({
@@ -82,7 +73,7 @@ global.pool = mysql.createPool({
  */
 
 require(ROOT+'/bin/app');
-const debug = require('debug')('delivery-nodejs:server');
+const debug = require('debug')('board-mvc-vue-nodejs:server');
 const http = require('http');
 
 /**

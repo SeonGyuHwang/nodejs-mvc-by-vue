@@ -5,6 +5,7 @@ import Vue from 'vue'
 import {mapActions, mapState} from "vuex";
 import App from './App'
 import { sync } from 'vuex-router-sync'
+import VCalendar from 'v-calendar'
 import router from '@/router'
 import store from "@/store"
 import mixins from '@/shared/mixin'
@@ -37,9 +38,7 @@ import moment from "moment"
 import phps from "@/shared/common/phps"
 
 import "bootstrap"
-import "@/assets/vendor/plugins/jquery-ui.min"
 import "chart.js"
-import "@/assets/vendor/jquery-easing/jquery.easing.min"
 import "@/assets/vendor/sb-admin/sb-admin.min"
 
 import "@/assets/js/func"
@@ -56,6 +55,9 @@ Vue.config.productionTip = false
 
 sync(store, router)
 Vue.use(mixins);
+Vue.use(VCalendar, {
+  locale: 'ko-KR'
+});
 Vue.use(VueHead);
 Vue.use(LoadScript);
 Vue.use(Loading);

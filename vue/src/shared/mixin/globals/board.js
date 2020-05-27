@@ -4,10 +4,13 @@ import store from '@/store'
 export default {
   data() {
     return {
-      page: 1,
+      dataPage: 1,
       dataStart: 0,
       perLength: 50,
-      perBlock: 5
+      perBlock: 5,
+      choiceDate: null,
+      schStartDate: null,
+      schEndDate: null
     }
   },
   watch: {
@@ -22,19 +25,29 @@ export default {
         this.setData()
       }
     },
-    startDate: {
-      handler() {
+    schStartDate: {
+      handler(nVal) {
+        this.dataPage = 1
+        this.dataStart = 0
+
+        store.dispatch('board/setStartDate', nVal ? moment(nVal).format('YYYY-MM-DD') : null)
         this.setData()
       }
     },
-    endDate: {
-      handler() {
+    schEndDate: {
+      handler(nVal) {
+        this.dataPage = 1
+        this.dataStart = 0
+
+        store.dispatch('board/setEndDate', nVal ? moment(nVal).format('YYYY-MM-DD') : null)
         this.setData()
       }
     }
   },
   computed: {
     ...mapState('board', {
+      startDate: state => state.startDate,
+      endDate: state => state.endDate,
       showModal: state => state.showModal
     }),
     ...mapState('common', {
@@ -65,27 +78,6 @@ export default {
     },
     setUserEmail (e){
       store.dispatch('board/setUserEmail', e.target.value)
-    },
-    setDatePicker (){
-
-      jQuery(".sch_start_date").datepicker({
-        onSelect: () => {
-          this.page = 1
-          this.dataStart = 0
-
-          store.dispatch('board/setStartDate', this.$el.querySelector('.sch_start_date').value)
-        }
-      })
-
-      jQuery(".sch_end_date").datepicker({
-        onSelect: () => {
-          this.page = 1
-          this.dataStart = 0
-
-          store.dispatch('board/setEndDate', this.$el.querySelector('.sch_end_date').value)
-        }
-      })
-
     },
     setData(){
 

@@ -36,8 +36,6 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  jQuery("#navbarResponsive").removeClass("show")
-
   let uriExistsValues = to.fullPath.split('/').filter( n => {
     return store.getters['common/getExcludePath'].includes(n);
   });

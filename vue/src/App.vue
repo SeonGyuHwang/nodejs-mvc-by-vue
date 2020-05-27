@@ -19,7 +19,6 @@
   @import 'vue-loading-overlay/dist/vue-loading.css';
   @import 'bootstrap/dist/css/bootstrap.min.css';
   @import 'font-awesome/css/font-awesome.min.css';
-  @import './assets/css/jquery-ui.min.css';
   @import './assets/css/sb-admin.min.css';
   @import './assets/css/custom.css';
 </style>

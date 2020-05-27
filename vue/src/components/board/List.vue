@@ -17,16 +17,17 @@
         <div class="card-body">
           <div class="table-responsive">
             <div class="text-center schWrap">
-              <label>
+              <div class="col-xs-12">
                 작성자 :
                 <input type="text" class="form-control-sm sch_user_email" style="width:150px;" @input="setUserEmail" v-on:keyup.enter="setData" />
-              </label>
-              <label>
+              </div>
+              <div class="col-xs-12">
                 기간검색 :
-                <input type="text" class="form-control-sm date-picker sch_start_date" style="width:120px;" v-model="startDate" :update_target="startDate" readonly />
+                <v-date-picker :input-props="{class: 'form-control-sm date-picker', readonly: true}" v-model="schStartDate" />
                 ~
-                <input type="text" class="form-control-sm date-picker sch_end_date" style="width:120px;" v-model="endDate" :update_target="endDate" readonly />
-              </label>
+                <v-date-picker :input-props="{class: 'form-control-sm date-picker', readonly: true}" v-model="schEndDate" />
+                <button type="button" class="btn btn-sm btn-danger" @click="schStartDate = null,schEndDate=null">초기화</button>
+              </div>
             </div>
             <div class="col-xs-12 no-padding">
               <div class="dataTables_length">
@@ -118,20 +119,10 @@
     components: {
       "write": Write
     },
-    watch:{
-      tableData: {
-        deep: true,
-        handler() {
-          this.tableGroups()
-        }
-      }
-    },
     computed: {
       ...mapState('board', {
         idx: state => state.idx,
         userEmail: state => state.userEmail,
-        startDate: state => state.startDate,
-        endDate: state => state.endDate,
         tableData: state => state.list,
         totalCount: state => state.count,
         totals: state => state.totals,
@@ -139,9 +130,6 @@
     },
     created() {
       this.setData()
-    },
-    updated() {
-      this.setDatePicker()
     }
   }
 </script>

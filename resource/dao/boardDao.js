@@ -14,7 +14,7 @@ boardDao.getDataRow = (args) => {
             pool.getConnection((err, conn) => {
                 if(err) {
                     conn.release();
-	                reject(resultArr.msg="커넥션 에러!");
+	                reject(resultArr.msg="conn Error!!");
                 }
 
                 let setQuery = 'SELECT ';
@@ -29,7 +29,7 @@ boardDao.getDataRow = (args) => {
 
 	            conn.query(setQuery, params, function (err, rows) {
 					conn.release();
-                    if(err) reject(resultArr.msg="SQL 에러!");
+                    if(err) reject(resultArr.msg="SQL Error!!");
 
 		            try {
 
@@ -59,7 +59,7 @@ boardDao.getDataCount = (args) => {
         pool.getConnection((err, conn) => {
             if(err) {
                 conn.release();
-	            reject(resultArr.msg="커넥션 에러!");
+	            reject(resultArr.msg="conn Error!!");
             }
 
             let setQuery = 'SELECT ';
@@ -84,7 +84,7 @@ boardDao.getDataCount = (args) => {
 
             conn.query(setQuery, params, (err, rows) => {
 				conn.release();
-                if(err) reject(resultArr.msg="SQL 에러!");
+                if(err) reject(resultArr.msg="SQL Error!!");
 
                 let totalCount = 0;
 
@@ -114,7 +114,7 @@ boardDao.getDataList = (args) => {
         pool.getConnection((err, conn) => {
             if(err) {
                 conn.release();
-	            reject(resultArr.msg="커넥션 에러!");
+	            reject(resultArr.msg="conn Error!!");
             }
 
             let setQuery = 'SELECT ';
@@ -128,12 +128,12 @@ boardDao.getDataList = (args) => {
 	        }
 
             if( args.sch_start_date ) {
-                setQuery += ' AND updated_date >= ? ';
+                setQuery += ' AND created_date >= ? ';
                 params.push( args.sch_start_date );
             }
 
             if( args.sch_end_date ) {
-                setQuery += ' AND updated_date <= ? ';
+                setQuery += ' AND created_date <= ? ';
                 params.push( args.sch_end_date );
             }
 
@@ -149,7 +149,7 @@ boardDao.getDataList = (args) => {
 
             conn.query(setQuery, params, function (err, rows) {
 				conn.release();
-                if(err) reject(resultArr.msg="SQL 에러!");
+                if(err) reject(resultArr.msg="SQL Error!!");
 
                 rows.forEach( (row, index) => {
 
@@ -183,12 +183,12 @@ boardDao.insertData = params => {
         pool.getConnection((err, conn) => {
             if (err) {
                 conn.release();
-	            reject(resultArr.msg="커넥션 에러!");
+	            reject(resultArr.msg="conn Error!!");
             }
 
             conn.query('INSERT INTO `board` SET ?', add_params, (err, rows) => {
                 conn.release();
-                if (err) reject(resultArr.msg="SQL 에러!");
+                if (err) reject(resultArr.msg="SQL Error!!");
 
                 resolve(rows.insertId);
             });
@@ -214,12 +214,12 @@ boardDao.updateData = (idx, params) => {
         pool.getConnection((err, conn) => {
             if (err) {
                 conn.release();
-	            reject(resultArr.msg="커넥션 에러!");
+	            reject(resultArr.msg="conn Error!!");
             }
 
             conn.query(setQuery, [add_params, idx], (err, rows) => {
                 conn.release();
-                if (err) reject(resultArr.msg="SQL 에러!");
+                if (err) reject(resultArr.msg="SQL Error!!");
 
                 resolve(true);
             });

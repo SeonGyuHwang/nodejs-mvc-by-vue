@@ -31,9 +31,6 @@ Naver & Google API setting
 - __[Naver Developer Link](https://developers.naver.com/main)__
 - __[Google Cloud Platform](https://console.cloud.google.com/home/dashboard)__
 ```
-Path: web.js
-line : 58 ~ 63
-
 Path: vue/src/store/modules/common/index.js
 line : 13 ~ 18
 ```

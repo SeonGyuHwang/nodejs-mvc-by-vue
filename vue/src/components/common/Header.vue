@@ -30,9 +30,12 @@
 <script>
   export default {
     name: 'app-header',
-    data () {
-      return {
-        title: void 0
+    watch:{
+      '$route': {
+        deep: true,
+        handler() {
+          this.$el.querySelector("#navbarResponsive").classList.remove("show")
+        }
       }
     }
   }

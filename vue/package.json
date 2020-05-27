@@ -17,19 +17,19 @@
   "dependencies": {
     "vue": "~2",
     "vuex": "~3",
-    "vuex-router-sync": "~5",
-    "vue-head": "~2",
-    "vue-router": "~3",
-    "vue-cookies": "~1",
-    "vue-plugin-load-script": "~1",
-    "vue-loading-overlay": "~3",
-    "vue-content-loading": "~1"
+    "vue-router": "~3"
   },
   "devDependencies": {
     "axios": "latest",
+    "v-calendar": "~1",
+    "vue-cookies": "~1",
+    "vue-plugin-load-script": "~1",
+    "vue-loading-overlay": "~3",
+    "vue-content-loading": "~1",
+    "vuex-router-sync": "~5",
+    "vue-head": "~2",
     "json5": "~2",
     "jquery": "~3",
-    "jquery-form": "~4",
     "moment": "latest",
     "popper.js": "latest",
     "bootstrap": "~4",

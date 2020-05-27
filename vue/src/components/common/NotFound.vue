@@ -18,17 +18,13 @@
           inner: "화물",
           separator: "-",
           complement: "404"
-        },
-        meta: [
-          { id: 'viewport', name: 'viewport', content: "width=device-width,initial-scale=1.0" }
-        ]
+        }
       }
     },
     beforeCreate() {
       document.body.classList.add("is_pop", "is_login")
     },
     destroyed() {
-      jQuery('#viewport').remove()
       document.body.classList.remove("is_pop", "is_login")
     }
   }

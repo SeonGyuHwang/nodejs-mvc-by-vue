@@ -43,11 +43,11 @@
       }
     },
     computed: {
-      ...mapState('delivery', {
+      ...mapState('board', {
         totalCount: state => state.count
       }),
       paged() {
-        return this.$parent.page
+        return this.$parent.dataPage
       },
       length() {
         return this.$parent.perLength
@@ -57,9 +57,9 @@
       }
     },
     methods: {
-      movePage(page = 1) {
-        this.$parent.page = page
-        this.$parent.dataStart = this.length*(page-1)
+      movePage(dataPage = 1) {
+        this.$parent.dataPage = dataPage
+        this.$parent.dataStart = this.length*(dataPage-1)
       },
       getPaging() {
         this.paging = this.$phps.setPaging(this.paged, this.totalCount, this.length, this.block)

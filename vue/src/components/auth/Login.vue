@@ -23,8 +23,10 @@
       }
     },
     beforeCreate() {
-      jQuery("#logoutModal").modal('hide')
       document.body.classList.add("is_pop", "is_login")
+
+      document.querySelectorAll("#logoutModal,.modal-backdrop")
+        .forEach(el => el.classList.remove("show"))
     },
     methods: {
       gAuthInit() {
@@ -37,9 +39,6 @@
     },
     mounted() {
       this.authApis();
-    },
-    destroyed() {
-      jQuery('#viewport').remove()
     }
   }
 </script>
