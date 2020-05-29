@@ -1,5 +1,9 @@
 "use strict";
-(function() {
+
+import router from '@/router'
+
+(function($) {
+	var userInfo = {};
 
     window.socket = {};
     window.onunload = () => {
@@ -10,7 +14,6 @@
     var setSocket = () => {
 
       try {
-        console.info('socket.js!', 'try');
 
         window.socket = io({
             'forceNew': true
@@ -18,9 +21,9 @@
 
         socket.on('connect', () => {
 
-            socket.emit('setUser', {
-                'url': location.href
-            });
+          socket.emit('setUser', {
+              'url': router.currentRoute.path
+          });
 
         });
 
@@ -28,39 +31,49 @@
             window.socket = {};
         });
 
+        socket.on('redirect', data => {
+          router.push(data.redirect || '/')
+        });
+
+        socket.on('getUser', data => {
+            userInfo = data;
+        });
+
         socket.on('loginResult', data => {
-            if( data.msg )
-                alert(data.msg);
+          if( data.msg )
+            alert(data.msg);
 
-            if( data.status == '200' )
-                location.replace(data.redirect);
-
+          if( data.status === '200' )
+            router.push(data.redirect || '/')
         });
 
         socket.on('error', err => {
-            socket.disconnect();
-            window.socket = {};
+          socket.disconnect();
+          window.socket = {};
 
-            console.log(err);
+          console.log(err);
         });
 
       } catch(err) {
-          console.info('socket.js!catch', err.message);
-          window.socket = {};
+        console.info('socket.js!catch', err.message);
+        window.socket = {};
       }
 
     };
 
     var _init = () => {
 
-      if( typeof io === "object" )
-        window.onload = () => setSocket()
+      window.onload = () => {
+
+        if( typeof io === "function" )
+          setSocket()
+
+      }
 
 	};
 
-    jQuery(function() {
+  $(() => {
       _init();
-
-    });
+  });
 
 })( jQuery );
