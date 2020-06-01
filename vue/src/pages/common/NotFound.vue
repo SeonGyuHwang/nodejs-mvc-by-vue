@@ -1,9 +1,9 @@
 <template>
   <div id="App-404">
     <div class="card card-login mx-auto mt-5">
-      <div class="card-header">존재하지 않는 페이지 입니다.</div>
+      <div class="card-header">Not Found Page.</div>
       <div class="card-body text-center">
-        <router-link to="/" class="btn btn-primary">홈으로</router-link>
+        <router-link to="/" class="btn btn-primary">Home</router-link>
       </div>
     </div>
   </div>
@@ -15,7 +15,7 @@
     head() {
       return {
         title: {
-          inner: "화물",
+          inner: "SPA",
           separator: "-",
           complement: "404"
         }

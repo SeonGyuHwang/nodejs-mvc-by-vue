@@ -1,7 +1,7 @@
 <template>
   <div id="Login-Google">
     <div class="card card-login mx-auto mt-5">
-      <div class="card-header text-center">구글 로그인중..</div>
+      <div class="card-header text-center">Loading..</div>
     </div>
   </div>
 </template>
@@ -12,9 +12,9 @@
     head() {
       return {
         title: {
-          inner: "로그인",
+          inner: "Login",
           separator: "-",
-          complement: "구글"
+          complement: "Google"
         }
       }
     },
@@ -25,15 +25,15 @@
         gapi.load('client:auth2', () => {
 
           gapi.auth2.init({
-            apiKey: self.$root.googleApiKey
-            ,client_id: self.$root.googleClientId
+            apiKey: self.googleApiKey
+            ,client_id: self.googleClientId
             ,scope: 'profile email'
           }).then( auth2 => {
 
             if( !auth2.isSignedIn.get() ) {
 
-              alert("auth 인증 실패!");
-              self.$root.loginFail()
+              alert("auth fail!");
+              self.loginFail()
 
             } else {
 
@@ -49,7 +49,7 @@
                 ,'familyName': googleUser.getFamilyName()
               }
 
-              self.$root.userLoginAction({
+              self.userLoginAction({
                 'userId': googleInfo.email
                 ,'loginType': 'google'
               });
@@ -57,8 +57,8 @@
             }
 
           }).catch(err => {
-            alert("로그인 실패! ("+ err.message +")");
-            self.$root.loginFail()
+            alert("login fail! ("+ err.message +")");
+            self.loginFail()
           });
 
         });

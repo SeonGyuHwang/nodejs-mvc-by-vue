@@ -10,10 +10,10 @@ import router from '@/router'
 import store from "@/store"
 import mixins from '@/shared/mixin'
 
-import Header from '@/components/common/Header'
-import Footer from '@/components/common/Footer'
-import Body from '@/components/common/Body'
-import Paging from '@/components/common/Paging'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import Body from '@/components/Body'
+import Paging from '@/components/Paging'
 
 /**
  * Global 컴포넌트

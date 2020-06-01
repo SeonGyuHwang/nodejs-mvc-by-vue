@@ -18,7 +18,7 @@
           <li class="nav-item">
             <a href="javascript:void(0);" class="nav-link" data-toggle="modal" data-target="#logoutModal">
               <i class="fa fa-fw fa-sign-out"></i>
-              로그아웃
+              Logout
             </a>
           </li>
         </ul>

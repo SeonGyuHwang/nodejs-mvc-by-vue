@@ -3,7 +3,7 @@
     <footer class="sticky-footer d-print-none">
       <div class="container">
         <div class="text-center">
-          <small>Copyright © SeonGyuHwang 2018~</small>
+          <small>Copyright © SeonGyuHwang 2020~</small>
         </div>
       </div>
     </footer>
@@ -22,8 +22,8 @@
             </button>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-            <a class="btn btn-primary" href="javascript:void(0);" @click="userLogoutAction">로그아웃</a>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="javascript:void(0);" @click="userLogoutAction">Logout</a>
           </div>
         </div>
       </div>

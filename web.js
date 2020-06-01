@@ -60,7 +60,7 @@ global.pool = mysql.createPool({
     host     : 'host',
     user     : 'user',
     password : 'password',
-    database : process.env.NODE_ENV === 'DEV' ? 'spa_dev' : 'delivery',
+    database : process.env.NODE_ENV === 'DEV' ? 'spa_dev' : 'spa',
 	connectionLimit : 100,
 	waitForConnections : true,
 	acquireTimeout: 10000

@@ -5,28 +5,28 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <router-link to="/card">
-            게시판
+            Board
           </router-link>
         </li>
       </ol>
 
       <div class="card listWrap">
         <div class="card-body">
-          <a href="javascript:void(0);" class="btn btn-block btn-primary" @click="writePopup()">등록</a>
+          <a href="javascript:void(0);" class="btn btn-block btn-primary" @click="writePopup()">Write</a>
         </div>
         <div class="card-body">
           <div class="table-responsive">
             <div class="text-center schWrap">
               <div class="col-xs-12">
-                작성자 :
+                Writer :
                 <input type="text" class="form-control-sm sch_user_email" style="width:150px;" @input="setUserEmail" v-on:keyup.enter="setData" />
               </div>
               <div class="col-xs-12">
-                기간검색 :
+                Search Date :
                 <v-date-picker :input-props="{class: 'form-control-sm date-picker', readonly: true}" v-model="schStartDate" />
                 ~
                 <v-date-picker :input-props="{class: 'form-control-sm date-picker', readonly: true}" v-model="schEndDate" />
-                <button type="button" class="btn btn-sm btn-danger" @click="schStartDate = null,schEndDate=null">초기화</button>
+                <button type="button" class="btn btn-sm btn-danger" @click="schStartDate = null,schEndDate=null">Reset</button>
               </div>
             </div>
             <div class="col-xs-12 no-padding">
@@ -39,7 +39,7 @@
                     <option value="500">500</option>
                     <option value="-1">전체</option>
                   </select>
-                </label>개의 항목 표시
+                </label> Per_page
               </div>
             </div>
           </div>
@@ -53,10 +53,10 @@
             </colgroup>
             <thead>
               <tr>
-                <th class="text-center">번호</th>
-                <th class="text-center">제목</th>
-                <th class="text-center">일자</th>
-                <th class="text-center">작성자</th>
+                <th class="text-center">No</th>
+                <th class="text-center">Title</th>
+                <th class="text-center">RegDate</th>
+                <th class="text-center">Writer</th>
               </tr>
             </thead>
             <tbody>
@@ -67,22 +67,22 @@
                 <td class="text-center">{{ row.created_id }}</td>
               </tr>
               <tr v-show="tableData.length <= 0">
-                <td class="text-center" colspan="4">조회된 데이터가 없습니다.</td>
+                <td class="text-center" colspan="4">Not Found Data.</td>
               </tr>
             </tbody>
             <tfoot>
             <tr>
-              <th class="text-center">번호</th>
-              <th class="text-center">제목</th>
-              <th class="text-center">일자</th>
-              <th class="text-center">작성자</th>
+              <th class="text-center">No</th>
+              <th class="text-center">Title</th>
+              <th class="text-center">RegDate</th>
+              <th class="text-center">Writer</th>
             </tr>
             </tfoot>
           </table>
           <div class="row" v-show="!contentLoading && tableData.length > 0">
             <div class="col-sm-12 col-md-5">
               <div class="dataTables_info">
-                총 {{ totalCountNumberFormat }} 건
+                Total {{ totalCountNumberFormat }}
               </div>
             </div>
             <div class="col-sm-12 col-md-7">
@@ -91,7 +91,7 @@
           </div>
         </div>
         <div class="card-body">
-          <a href="javascript:void(0);" class="btn btn-block btn-primary" @click="writePopup()">등록</a>
+          <a href="javascript:void(0);" class="btn btn-block btn-primary" @click="writePopup()">Write</a>
         </div>
       </div>
     </div>
@@ -112,7 +112,7 @@
         title: {
           inner: "SPA",
           separator: "-",
-          complement: "게시판"
+          complement: "Board"
         }
       }
     },

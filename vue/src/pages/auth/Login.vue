@@ -1,10 +1,10 @@
 <template>
   <div id="Login">
     <div class="card card-login mx-auto mt-5">
-      <div class="card-header">로그인 선택</div>
+      <div class="card-header">Choice Login</div>
       <div class="card-body">
-        <a href="javascript:void(0);" class="btn btn-primary googleAccountLoginBtn" @click="gAuthInit">구글</a>
-        <a href="javascript:void(0);" id="naverIdLogin" class="naverAccountLoginBtn">네이버</a>
+        <a href="javascript:void(0);" class="btn btn-primary googleAccountLoginBtn" @click="gAuthInit">Google</a>
+        <a href="javascript:void(0);" id="naverIdLogin" class="naverAccountLoginBtn">Naver</a>
       </div>
     </div>
   </div>
@@ -18,7 +18,7 @@
         title: {
           inner: "SPA",
           separator: "-",
-          complement: "로그인"
+          complement: "Login"
         }
       }
     },
@@ -33,7 +33,7 @@
         gapi.auth2.getAuthInstance().signIn({
           scope: 'profile email'
           ,ux_mode: 'redirect'
-          ,redirect_uri: this.$root.host +"/auth/callback/google"
+          ,redirect_uri: this.host +"/auth/callback/google"
         })
       }
     },

@@ -15,7 +15,7 @@ export default {
     return commit(t.SET_CONTENT_LOADING, bool)
   },
   userLoginCheck ({ commit }) {
-    if( router.currentRoute.meta.loginPath === true )
+    if( router.currentRoute.meta.authCallback === true )
       return commit(t.SET_USER_LOGIN_CHECK, true)
 
     return Promise.resolve()
@@ -24,15 +24,23 @@ export default {
       })
       .then((response) => {
         const result = response.data || {}
-
         commit(t.SET_USER_LOGIN_CHECK, true)
 
-        if( result.status === 403 ) {
-          Vue.$cookie.remove("user_info")
-          commit(t.SET_USER_LOGIN_FAIL)
+        switch (result.status) {
+          case 200:
+            if( router.currentRoute.meta.loginPath === true )
+              router.push("/")
+            break
 
-          if( router.currentRoute.meta.loginPath !== true )
-            router.push("/auth/login")
+          case 403:
+          default:
+            Vue.$cookie.remove("user_info")
+            commit(t.SET_USER_LOGIN_FAIL)
+
+            if( router.currentRoute.meta.loginPath !== true )
+              router.push("/auth/login")
+
+            break
         }
 
       })
@@ -48,10 +56,9 @@ export default {
       })
       .then((response) => {
         const result = response.data || {}
-        let enc_userinfo = Vue.$phps.Encrypt(JSON5.stringify(result.arr.userinfo))
 
-        commit(t.SET_USER_LOGIN, enc_userinfo)
-        Vue.$cookie.set("user_info", enc_userinfo)
+        commit(t.SET_USER_LOGIN, result.arr.userinfo)
+        Vue.$cookie.set("user_info", Vue.$phps.Encrypt(JSON5.stringify(result.arr.userinfo)))
 
         return router.push(result.url)
       })

@@ -13,11 +13,11 @@
               </colgroup>
               <tbody>
               <tr>
-                <th class="text-center">제목</th>
+                <th class="text-center">Title</th>
                 <td class="text-center"><input type="text" name="title" class="form-control title" :value="row.title" :readonly="row.idx && row.created_id !== user_info.userId" /></td>
               </tr>
               <tr>
-                <th class="text-center">내용</th>
+                <th class="text-center">Contents</th>
                 <td class="text-center">
                   <textarea name="contents" class="form-control contents" rows="10" :readonly="row.idx && row.created_id !== user_info.userId">{{ row.contents }}</textarea>
                 </td>
@@ -27,9 +27,9 @@
           </div>
         </div>
         <div class="card-body text-center">
-          <a href="javascript:void(0);" class="btn btn-primary procBtn" v-if="!idx || row.created_id === user_info.userId" @click="proc">저장</a>
-          <a href="javascript:void(0);" class="btn btn-danger delBtn" v-if="row.idx && row.created_id === user_info.userId" @click="delRow(idx)">삭제</a>
-          <a href="javascript:void(0);" class="btn btn-black" @click="close">닫기</a>
+          <a href="javascript:void(0);" class="btn btn-primary procBtn" v-if="!idx || row.created_id === user_info.userId" @click="proc">Save</a>
+          <a href="javascript:void(0);" class="btn btn-danger delBtn" v-if="row.idx && row.created_id === user_info.userId" @click="delRow(idx)">Delete</a>
+          <a href="javascript:void(0);" class="btn btn-black" @click="close">Close</a>
         </div>
       </div>
     </form>

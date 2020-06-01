@@ -1,7 +1,7 @@
 <template>
   <div id="Login-Naver">
     <div class="card card-login mx-auto mt-5">
-      <div class="card-header text-center">네이버 로그인중..</div>
+      <div class="card-header text-center">Loading..</div>
     </div>
   </div>
 </template>
@@ -12,9 +12,9 @@
     head() {
       return {
         title: {
-          inner: "로그인",
+          inner: "Login",
           separator: "-",
-          complement: "네이버"
+          complement: "Naver"
         }
       }
     },
@@ -23,13 +23,12 @@
         const self = this
 
         var naverLogin = new naver.LoginWithNaverId({
-          clientId: self.$root.naverClientId,
-          callbackUrl: self.$root.host+"/auth/callback/naver",
+          clientId: self.naverClientId,
+          callbackUrl: self.host+"/auth/callback/naver",
           isPopup: false,
           callbackHandle: true
         });
 
-        /* (3) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
         naverLogin.init();
 
         naverLogin.getLoginStatus((status) => {
@@ -47,13 +46,13 @@
 
             if( typeof naverInfo.email === undefined || naverInfo.email === null) {
 
-              alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+              alert("Required Email.");
               naverLogin.reprompt();
-              self.$root.loginFail()
+              self.loginFail()
 
             } else {
 
-              self.$root.userLoginAction({
+              self.userLoginAction({
                 'userId': naverInfo.email
                 ,'loginType': 'naver'
               });
@@ -61,8 +60,8 @@
             }
 
           } else {
-            alert("callback 처리에 실패하였습니다.");
-            self.$root.loginFail()
+            alert("callback Error!");
+            self.loginFail()
           }
         });
 
