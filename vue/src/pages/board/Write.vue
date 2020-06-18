@@ -48,21 +48,23 @@
         row: state => state.row
       })
     },
-    beforeCreate() {
-      document.body.classList.add('is_pop', 'is_login', 'is_popup_resize')
-    },
     created() {
       this.$store.dispatch('board/clearRow')
     },
     mounted() {
 
-      if( this.idx )
-        this.getRowAction({ params: { idx: this.idx } })
+      if( this.idx ) {
+        this.getRowAction({
+          container: this.$refs.publicFrm,
+          params: {
+            idx: this.idx
+          }
+        })
+      }
 
     },
     destroyed() {
       this.$emit('close')
-      document.body.classList.remove('is_pop', 'is_login', 'is_popup_resize')
     }
   }
 </script>

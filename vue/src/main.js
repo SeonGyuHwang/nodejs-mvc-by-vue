@@ -14,6 +14,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Body from '@/components/Body'
 import Paging from '@/components/Paging'
+import WindowPopup from '@/components/WindowPopup'
 
 /**
  * Global 컴포넌트
@@ -22,6 +23,7 @@ Vue.component('app-header', Header)
 Vue.component('app-footer', Footer)
 Vue.component('app-body', Body)
 Vue.component('app-paging', Paging)
+Vue.component('app-popup', WindowPopup)
 Vue.component('vcl-table', VclTable)
 
 /**

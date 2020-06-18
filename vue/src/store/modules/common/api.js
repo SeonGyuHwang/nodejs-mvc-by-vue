@@ -1,6 +1,7 @@
 import Vue from 'vue'
 
 window.axiosInstance = () => {
+  let loading, container
   const instance = axios.create({
     baseURL: `/api`,
     timeout: 30000,
@@ -11,14 +12,14 @@ window.axiosInstance = () => {
     }
   })
 
-  let loading
-
   instance.interceptors.request.use(config => {
     if( Vue.$cookie.get("user_info") )
       config.headers['Access-Token'] = Vue.$cookie.get("user_info")
+    container = window._loading_container || config.container
 
     if( config.noLoading !== true ) {
       loading = Vue.$loading.show({
+        container: container || null,
         canCancel: true,
         color: '#ffffff',
         backgroundColor: '#000000'
@@ -28,6 +29,8 @@ window.axiosInstance = () => {
     return config;
   }, err => {
     console.log("axios req:err", err)
+    alert("Error! ("+err.message+")")
+    window._loading_container = null
 
     if( loading )
       loading.hide()
@@ -35,13 +38,16 @@ window.axiosInstance = () => {
   });
 
   instance.interceptors.response.use(response => {
+    window._loading_container = null
 
     if( loading )
       loading.hide()
 
     return response;
   }, err => {
-    console.log("axios req:err", err)
+    console.log("axios res:err", err)
+    alert("Error! ("+err.message+")")
+    window._loading_container = null
 
     if( loading )
       loading.hide()

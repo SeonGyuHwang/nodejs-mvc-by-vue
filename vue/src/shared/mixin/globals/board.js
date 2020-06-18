@@ -8,12 +8,19 @@ export default {
       dataStart: 0,
       perLength: 50,
       perBlock: 5,
+      popupOpen: false,
       choiceDate: null,
       schStartDate: null,
       schEndDate: null
     }
   },
   watch: {
+    popupOpen: {
+      deep: true,
+      handler() {
+        store.dispatch('board/setShowModal', this.popupOpen)
+      }
+    },
     dataStart: {
       deep: true,
       handler() {
@@ -46,6 +53,7 @@ export default {
   },
   computed: {
     ...mapState('board', {
+      idx: state => state.idx,
       startDate: state => state.startDate,
       endDate: state => state.endDate,
       showModal: state => state.showModal
@@ -69,12 +77,12 @@ export default {
       this.$emit('close')
     },
     writeClose() {
+      this.popupOpen = false
       store.dispatch('board/setIdx', null)
-      store.dispatch('board/setShowModal', false)
     },
     writePopup(idx) {
+      this.popupOpen = true
       store.dispatch('board/setIdx', idx)
-      store.dispatch('board/setShowModal', true)
     },
     setUserEmail (e){
       store.dispatch('board/setUserEmail', e.target.value)
@@ -101,6 +109,7 @@ export default {
         for (let [key, val] of formData.entries())
           Object.assign(data, { [key]: val })
 
+        window._loading_container = this.$refs.publicFrm;
         this.setRowAction(data).then(() => {
           this.setData()
           this.close()
@@ -114,16 +123,13 @@ export default {
     },
     delRow() {
 
-      if( confirm('삭제 하시겠습니까?') ) {
-
-        this.delRowAction({
-          params: { idx: this.$parent.idx }
-        }).then(() => {
-          this.setData()
-          this.close()
-        })
-
-      }
+      this.delRowAction({
+        container: this.$refs.publicFrm,
+        params: { idx: this.$parent.idx }
+      }).then(() => {
+        this.setData()
+        this.close()
+      })
 
     }
   }

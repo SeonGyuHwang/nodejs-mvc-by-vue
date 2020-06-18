@@ -49,7 +49,8 @@ export default {
 
         const result = typeof res === 'object' ? res.data : {}
 
-        alert(result.msg)
+        if( result.status !== 200 )
+          alert(result.msg)
 
       })
       .catch((err) => {
