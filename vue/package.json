@@ -29,6 +29,7 @@
     "vue-content-loading": "~1",
     "vuex-router-sync": "~5",
     "vue-head": "~2",
+    "chart.js": "~2",
     "json5": "~2",
     "jquery": "~3",
     "moment": "latest",
